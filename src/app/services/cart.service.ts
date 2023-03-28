@@ -7,6 +7,8 @@ import { Products } from '../models/product';
 export class CartService {
   cart: Products[] = [];
 
+  storage = window.localStorage;
+
   constructor() { }
 
   addToCart(product: Products, quantity: number) {
@@ -17,6 +19,17 @@ export class CartService {
       const cartProduct = { ...product, quantity };
       this.cart.push(cartProduct);
     }
+    console.log('Cart content:', this.cart);
     alert('Added to cart!');
   }
+   
+  getCartProduct(): Products[] {
+    const cart = localStorage.getItem('cart');
+    return cart ? JSON.parse(cart) : [];
+  }
+
+  clearCart(): void {
+    localStorage.removeItem('cart');
+  }
+  
 }

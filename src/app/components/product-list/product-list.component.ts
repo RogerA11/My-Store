@@ -10,7 +10,7 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class ProductListComponent implements OnInit {
   products: Products[] = [];
-  selectedQuantity: number = 1;
+  selectedQuantities: { [key: number]: number } = {};
 
   constructor(private httpService: HttpService, private cartService: CartService) { }
 
@@ -21,7 +21,8 @@ export class ProductListComponent implements OnInit {
     })
   };
 
-  addToCart(product: Products, quantity: number) {
+  addToCart(product: Products) {
+    const quantity = this.selectedQuantities[product.id] || 1;
     this.cartService.addToCart(product, quantity);
   }
 }

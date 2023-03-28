@@ -28,7 +28,7 @@
         <p>Credit card number</p>
         <input type="test" name="CCnum" required pattern="\d{16}" placeholder="(16-digit number)" [(ngModel)]="ccnum" (ngModelChange)="ccnumChanged($event)">
         <p> we will never share your payment details with anyone else</p>
-        <a routerLink="/orderConfirmed" [state]="order">
+        <a routerLink="/confirmation">
           <input (click)="submitOrder()" type="submit" [disabled]="form.invalid" value="Submit">
         </a>
       </form>

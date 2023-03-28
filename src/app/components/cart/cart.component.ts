@@ -34,48 +34,44 @@ export class CartComponent implements OnInit {
   }
 
 removeFromCart(id: number): void {
-  // Get the current cart
   const currentCart = this.cartService.getCartProduct();
-
-  // Remove the product with the given id from the cart
   const updatedCart = currentCart.filter(product => product.id !== id);
 
-  // Update the cart in local storage
   localStorage.setItem('cart', JSON.stringify(updatedCart));
 }
 
-  
-  removeCart(id: number): void {
+removeCart(id: number): void {
     const cartIdx = this.products ? this.products.findIndex(cart => cart.id === id) : -1;
     if (cartIdx != -1 && this.products.length > 0) {
       this.products.splice(cartIdx, 1);
-      this.cartService.clearCart();
+      this.removeFromCart(id);
       this.calculateTotalPrice();
     }
   }
-
-  calculateTotalPrice(): void {
+  
+calculateTotalPrice(): void {
     this.totalPrice = this.products.reduce((acc: number, val: any) => {
       return acc + val.price * Number(val.quantity);
     }, 0);
     this.totalPrice = Number(this.totalPrice.toFixed(2));
   }
   
-  nameChanged(arg: any) {
+nameChanged(arg: any) {
     this.name = arg;
   }
 
-  addressChanged(arg: any) {
+addressChanged(arg: any) {
     this.address = arg;
   }
 
-  ccnumChanged(arg: any) {
+ccnumChanged(arg: any) {
     this.ccnum = arg;
   }
-
-  submitOrder(): void {
+  
+submitOrder(): void {
     // Submit the order and clear the cart
     this.cartService.clearCart();
-    this.route.navigateByUrl(`success/${this.name}/${this.totalPrice}`);
+    this.route.navigateByUrl(`confirmation/${this.name}/${this.totalPrice}`);
   }
+  
 }
