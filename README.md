@@ -1,7 +1,11 @@
 
-# MyStore - Angular E-commerce SPA
+# MyStore - Angular E-Commerce SPA
 
 MyStore is a responsive, user-friendly e-commerce single page application (SPA) built using Angular. It allows users to effortlessly browse through a variety of available products, add items to their shopping cart, manage their cart content, and complete the checkout process within a single, dynamic page.
+
+MyStore demonstrates the power and versatility of Angular in building modern, interactive web applications. This project serves as a practical example of an SPA, showcasing the effectiveness of Angular in creating seamless e-commerce experiences for users.
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
 
 ## Key Features
 
@@ -10,15 +14,9 @@ MyStore is a responsive, user-friendly e-commerce single page application (SPA) 
 - Update product quantities within the cart
 - Smooth and secure checkout process
 
-## Overview
-
-MyStore demonstrates the power and versatility of Angular in building modern, interactive web applications. This project serves as a practical example of an SPA, showcasing the effectiveness of Angular in creating seamless e-commerce experiences for users.
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
-
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Install dependencies by running `npm install` and run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
