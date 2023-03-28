@@ -1,7 +1,7 @@
 <ul class="product-index">
   <li *ngFor="let product of products" class="product-container">
     <div class="product-wrapper">
-      <a [routerLink]="['/products', product.id]" class="product-link" (click)="onProductClick(product)">
+      <a [routerLink]="['/products', product.id]" class="product-link">
         <div class="product-image">
           <div class="image-frame">
             <img src="{{ product.url }}" alt="{{ product.name }}">
@@ -24,4 +24,4 @@
   </li>
 </ul>
 
-<app-product-item *ngIf="selectedProduct" [product]="selectedProduct"></app-product-item>
+

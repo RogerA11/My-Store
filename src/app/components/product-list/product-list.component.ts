@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Products } from 'src/app/models/product';
 import { HttpService } from 'src/app/services/http.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-product-list',
@@ -9,11 +10,9 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class ProductListComponent implements OnInit {
   products: Products[] = [];
-  cart: Products[] = [];
   selectedQuantity: number = 1;
-  selectedProduct: Products | null = null;
 
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.httpService.getData().subscribe(data => {
@@ -23,19 +22,6 @@ export class ProductListComponent implements OnInit {
   };
 
   addToCart(product: Products, quantity: number) {
-    const productIndex = this.cart.findIndex(p => p.id === product.id);
-    if (productIndex > -1) {
-      this.cart[productIndex].quantity += quantity
-    } else {
-      const cartProduct = { ...product, quantity };
-      this.cart.push(cartProduct);
-    }
-    alert('Added to cart!');
+    this.cartService.addToCart(product, quantity);
   }
-  
-  onProductClick(product: Products): void {
-    this.selectedProduct = {...product};
-  }
-};
-
-
+}

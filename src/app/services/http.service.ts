@@ -8,7 +8,7 @@ import { Products } from '../models/product';
 })
 export class HttpService {
 
-  private data = '../assets/data.json';
+  private data = 'http://localhost:4200/assets/data.json';
 
   constructor(private http: HttpClient) { }
 
@@ -16,7 +16,5 @@ export class HttpService {
     return this.http.get<Products[]>(this.data);
 }
 }
-
-
 
 

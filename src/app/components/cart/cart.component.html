@@ -1,1 +1,42 @@
-<p>cart works!</p>
+<div *ngIf="products.length; else noCart" class="cart-container">
+    <div class="cart-item-details">
+      <div *ngFor="let products of products" class="cart-item">
+        <img class="" src="{{products.url}}" alt="{{products.name}}">
+        <div class="cart-panel">
+          <div class="product-item-detail">{{products.name}}</div>
+          <div class="product-item-detail">$ {{products.price}}</div>
+          <div class="product-item-detail">
+            <select (change)="selectChange(products.id, $event, selectedQuantity)" style="width: 100px;" class="form-select" aria-label="Default select example">
+              <option *ngFor="let product_option of productCount" [ngValue]="product_option" [selected]="products.quantity === selectedQuantity">
+                {{ product_option }}
+              </option>
+            </select>
+          </div>
+          <div class="product-item-detail">
+            <button (click)="removeCart(products.id)" class="product-item-detail btn btn-primary">Remove</button>
+          </div>
+        </div>
+      </div>
+      <div class="cart-item"><b>Total Price: ${{ totalPrice }}</b></div>
+    </div>
+    <div class="form-margin">
+      <form #form="ngForm" class="form-margin">
+        <p>Full name</p>
+        <input type="text" name="name" required minlength="3" placeholder="(Minimum 3 character)" [(ngModel)]="name" (ngModelChange)="nameChanged($event)">
+        <p>Address</p>
+        <input type="text" name="Address" required minlength="6" placeholder="(Minimum 6 character)" [(ngModel)]="address" (ngModelChange)="addressChanged($event)">
+        <p>Credit card number</p>
+        <input type="test" name="CCnum" required pattern="\d{16}" placeholder="(16-digit number)" [(ngModel)]="ccnum" (ngModelChange)="ccnumChanged($event)">
+        <p> we will never share your payment details with anyone else</p>
+        <a routerLink="/orderConfirmed" [state]="order">
+          <input (click)="submitOrder()" type="submit" [disabled]="form.invalid" value="Submit">
+        </a>
+      </form>
+    </div>
+  </div>
+  <ng-template #noCart>
+    <div class="empty-cart-message">
+      Cart is Empty! Please, <a routerLink="/"> add product to cart</a>.
+    </div>
+  </ng-template>
+  

@@ -14,6 +14,10 @@ img {
     align-items: center;
     margin-top: 64px;
   }
+
+  .add-to-cart-button {
+    margin-top: 8px;
+  }
   
   .detail-item {
     margin-left: 128px;
@@ -24,4 +28,46 @@ img {
     margin-top: 8px;
   }
 
- 
+  .back-link {
+    text-decoration: none; 
+    color: inherit; 
+  }
+  
+  .product-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .products-details {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    max-width: 80%; /* Adjust this value to control the width of the content area */
+    margin: auto;
+  }
+  
+  .products-details img {
+    margin-right: 50px; /* Adjust this value to control the spacing between the image and text */
+    margin-top: 35px;
+  }
+  
+  .products-info {
+    text-align: left;
+    margin-top: 130px;
+  }
+  
+  /* Optional: Add this if you want to align the back link to the center */
+  .product-details-container a {
+    text-align: center;
+    display: block;
+    margin-top: 20px; /* Adjust this value to control the spacing between the content and back link */
+  }
+  
+  button {
+    padding: 8px 16px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
