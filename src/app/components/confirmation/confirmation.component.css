@@ -18,3 +18,11 @@
   .confirmation-item {
     margin-bottom: 30px;
   }
+
+  button {
+    padding: 8px 16px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }

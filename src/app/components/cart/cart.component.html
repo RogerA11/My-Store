@@ -1,42 +1,50 @@
-<div *ngIf="products.length; else noCart" class="cart-container">
-    <div class="cart-item-details">
-      <div *ngFor="let products of products" class="cart-item">
-        <img class="" src="{{products.url}}" alt="{{products.name}}">
-        <div class="cart-panel">
-          <div class="product-item-detail">{{products.name}}</div>
-          <div class="product-item-detail">$ {{products.price}}</div>
-          <div class="product-item-detail">
-            <select (change)="selectChange(products.id, $event, selectedQuantity)" style="width: 100px;" class="form-select" aria-label="Default select example">
-              <option *ngFor="let product_option of productCount" [ngValue]="product_option" [selected]="products.quantity === selectedQuantity">
-                {{ product_option }}
-              </option>
-            </select>
+<div class="main-container">
+  <div class="cart-container">
+    <div class="cart-panel">
+      <!-- Cart items -->
+      <div *ngFor="let item of cartItems" class="cart-item">
+        <img [src]="item.product.url" alt="Product image">
+        <div class="cart-item-details">
+          <h3>{{ item.product.name }}</h3>
+          <p>{{ item.product.price | currency }}</p>
+          <div class="form-margin">
+            <label for="quantity">Amount: </label>
+            <input class="number-input" type="number" id="quantity" name="quantity" [(ngModel)]="item.quantity" min="1" max="99" (change)="selectChange(item.product.id, $event, item.quantity)">
           </div>
-          <div class="product-item-detail">
-            <button (click)="removeCart(products.id)" class="product-item-detail btn btn-primary">Remove</button>
-          </div>
+          <button (click)="removeFromCart(item.product.id)">Remove from cart</button>
         </div>
       </div>
-      <div class="cart-item"><b>Total Price: ${{ totalPrice }}</b></div>
+      <p>Total: {{ totalPrice | currency }}</p>
     </div>
-    <div class="form-margin">
-      <form #form="ngForm" class="form-margin">
-        <p>Full name</p>
-        <input type="text" name="name" required minlength="3" placeholder="(Minimum 3 character)" [(ngModel)]="name" (ngModelChange)="nameChanged($event)">
-        <p>Address</p>
-        <input type="text" name="Address" required minlength="6" placeholder="(Minimum 6 character)" [(ngModel)]="address" (ngModelChange)="addressChanged($event)">
-        <p>Credit card number</p>
-        <input type="test" name="CCnum" required pattern="\d{16}" placeholder="(16-digit number)" [(ngModel)]="ccnum" (ngModelChange)="ccnumChanged($event)">
-        <p> we will never share your payment details with anyone else</p>
-        <a routerLink="/confirmation">
-          <input (click)="submitOrder()" type="submit" [disabled]="form.invalid" value="Submit">
-        </a>
-      </form>
+        <div *ngIf="cartItems.length > 0" class="cart-summary">
+          <form (ngSubmit)="submitOrder()" #orderForm="ngForm">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name" minlength="3" [(ngModel)]="name" required #nameField="ngModel">
+              <div *ngIf="nameField.invalid && nameField.touched" class="error">
+                Name must be at least 3 characters long.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="address">Address:</label>
+              <input type="text" id="address" name="address" minlength="6" [(ngModel)]="address" required #addressField="ngModel">
+              <div *ngIf="addressField.invalid && addressField.touched" class="error">
+                Address must be at least 6 characters long.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="ccnum">Credit Card Number:</label>
+              <input type="text" pattern="[0-9]{16}" id="ccnum" name="ccnum" [(ngModel)]="ccnum" required #ccnumField="ngModel">
+              <div *ngIf="ccnumField.invalid && ccnumField.touched" class="error">
+                Credit Card Number must be exactly 16 digits.
+              </div>
+            </div>
+            <button class="submit-button" type="submit" [disabled]="!orderForm.form.valid">Submit Order</button>
+          </form>
+        </div>
+      </div>
+      <div *ngIf="cartItems.length === 0" class="empty-cart-message">
+        <h3>Your cart is empty!</h3>
+      </div>
     </div>
-  </div>
-  <ng-template #noCart>
-    <div class="empty-cart-message">
-      Cart is Empty! Please, <a routerLink="/"> add product to cart</a>.
-    </div>
-  </ng-template>
-  
+    
