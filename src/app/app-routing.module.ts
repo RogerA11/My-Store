@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: '', component: ProductListComponent },
   { path: 'cart', component: CartComponent },
   { path: 'products/:id', component: ProductItemDetailComponent },
-  { path: 'confirmation/:name/:totalPrice', component: ConfirmationComponent }
+  { path: 'confirmation', component: ConfirmationComponent },
 ];
 
 @NgModule({

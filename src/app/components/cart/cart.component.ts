@@ -37,7 +37,6 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   selectChange(id: number, event: any, selectedQuantity: number): void {
-    const selectedOption = event.target.quantity[event.target.quantity.selectedIndex].value;
     const product = this.cartItems.find(cartItem => cartItem.product.id === id)?.product;
     if (product) {
       this.cartService.addToCart(product, selectedQuantity);
@@ -50,6 +49,7 @@ export class CartComponent implements OnInit, OnDestroy {
     this.cartItems = updatedCart;
     this.cartService.updateCart(updatedCart);
     this.calculateTotalPrice();
+    alert('Removed from cart!');
   }
 
   calculateTotalPrice(): void {
@@ -72,8 +72,12 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   submitOrder(): void {
-    this.cartService.clearCart();
-    this.route.navigateByUrl(`confirmation/${this.name}/${this.totalPrice}`);
+    this.calculateTotalPrice();
+    // Remove the line below.
+    // this.cartService.clearCart();
+    this.route.navigate(['confirmation'], {
+      queryParams: { name: this.name, totalPrice: this.totalPrice },
+    });
   }
+  
 }
-

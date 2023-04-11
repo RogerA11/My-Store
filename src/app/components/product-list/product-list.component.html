@@ -1,25 +1,5 @@
 <ul class="product-index">
   <li *ngFor="let product of products" class="product-container">
-    <div class="product-wrapper">
-      <a [routerLink]="['/products', product.id]" class="product-link">
-        <div class="product-image">
-          <div class="image-frame">
-            <img src="{{ product.url }}" alt="{{ product.name }}">
-          </div>
-        </div>
-      </a>
-      <div class="product-info" style="text-align:center">
-        <a [routerLink]="['/products', product.id]" class="product-link">
-          <p class="product-name">{{ product.name }}</p>
-        </a>
-        <p class="product-price">{{ product.price | currency }}</p>
-        <div class="input-wrapper">
-          <select class="select-input" name="quantity" [(ngModel)]="selectedQuantities[product.id]">
-            <option *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">{{ i }}</option>
-          </select>
-        </div>
-        <button class="add-to-cart-button" (click)="addToCart(product)">Add to cart</button>
-      </div>
-    </div>
+    <app-product-item [product]="product" (addToCartClicked)="addToCart($event)" (productClicked)="onProductClicked(product.id)"></app-product-item>
   </li>
 </ul>

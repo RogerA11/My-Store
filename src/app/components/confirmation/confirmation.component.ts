@@ -12,14 +12,17 @@ export class ConfirmationComponent implements OnInit {
   totalPrice: number = 0;
 
   constructor(private route: ActivatedRoute, private router: Router, private cartService: CartService) { }
-
+  
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
+    this.route.queryParamMap.subscribe(params => {
       this.name = params.get('name') || '';
       this.totalPrice = Number(params.get('totalPrice')) || 0;
+      console.log('Name:', this.name, 'Total Price:', this.totalPrice);
+      this.cartService.clearCart(); // Clear the cart here.
     });
   }
-
+  
+  
   emptyCart(): void {
     this.cartService.clearCart();
   }

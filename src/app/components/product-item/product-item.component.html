@@ -1,0 +1,33 @@
+<div class="product-wrapper">
+  <div (click)="onProductNameClick($event)" *ngIf="!showDetails">
+    <div class="product-image">
+      <img [src]="product.url" [alt]="product.name" [class.product-details-image]="showDetails">
+    </div>
+    <div class="product-info">
+      <h3 class="product-name">{{ product.name }}</h3>
+      <p class="product-price">${{ product.price | number: '1.2-2' }}</p>
+    </div>
+  </div>
+  <div class="input-wrapper" *ngIf="!showDetails">
+    <select [(ngModel)]="selectedQuantity" class="select-input" (click)="$event.stopPropagation();">
+      <option *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" [value]="i">{{i}}</option>
+    </select>
+  </div>
+  <button class="add-to-cart-button" *ngIf="!showDetails" (click)="addToCart(product, selectedQuantity); $event.stopPropagation();">Add to cart</button>
+  <div *ngIf="showDetails" class="product-wrapper products-details">
+    <div class="product-image">
+      <img [src]="product.url" [alt]="product.name" [class.product-details-image]="showDetails">
+    </div>
+    <div class="product-info">
+      <h3 class="product-name">{{ product.name }}</h3>
+      <p class="product-price">${{ product.price | number: '1.2-2' }}</p>
+      <p>{{ product.description }}</p>
+      <div class="input-wrapper">
+        <select [(ngModel)]="selectedQuantity" class="select-input">
+          <option *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" [value]="i">{{i}}</option>
+        </select>
+      </div>
+      <button class="add-to-cart-button" (click)="addToCart(product, selectedQuantity)">Add to cart</button>
+    </div>
+  </div>
+</div>

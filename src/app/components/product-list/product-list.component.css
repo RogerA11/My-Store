@@ -93,3 +93,8 @@ a.product-link {
   font-size: 16px;
   color: #777;
 }
+
+.product-link {
+  text-decoration: none;
+  color: inherit;
+}

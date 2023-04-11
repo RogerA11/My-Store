@@ -48,7 +48,7 @@ img {
   }
   
   .products-details img {
-    margin-right: 50px; /* Adjust this value to control the spacing between the image and text */
+    margin-right: 50px; 
     margin-top: 35px;
   }
   
@@ -57,11 +57,11 @@ img {
     margin-top: 130px;
   }
   
-  /* Optional: Add this if you want to align the back link to the center */
+ 
   .product-details-container a {
     text-align: center;
     display: block;
-    margin-top: 20px; /* Adjust this value to control the spacing between the content and back link */
+    margin-top: 20px; 
   }
   
   button {
@@ -71,3 +71,16 @@ img {
     border: none;
     cursor: pointer;
   }
+
+  .product-link {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .product-details-image {
+    max-width: 50%; /* Adjust the size as needed */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  

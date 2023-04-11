@@ -11,6 +11,7 @@ import { ProductItemDetailComponent } from './components/product-item-detail/pro
 import { HeaderComponent } from './components/header/header.component';
 import { CheckoutFormComponent } from './components/checkout-form/checkout-form.component';
 import { FormsModule } from '@angular/forms';
+import { ProductItemComponent } from './components/product-item/product-item.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     ProductListComponent,
     ProductItemDetailComponent,
     HeaderComponent,
-    CheckoutFormComponent
+    CheckoutFormComponent,
+    ProductItemComponent
   ],
   imports: [
     BrowserModule,
